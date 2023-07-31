@@ -1,0 +1,44 @@
+<!-- <p>register works!</p> -->
+
+
+<div class="container-fluid-page">
+    <div class="page_box pd-3 mt-2">
+        Registration
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-relative text-center">
+            <form #userData="ngForm" (ngSubmit)="onSubmit(userData.value, '/login')" class="regform">
+                <label>Enter your name: </label>
+                <input type="text" name="username" placeholder="Name: " ngModel>
+                <br>
+                <br>
+                <label for="email"> Enter your email ID: </label>
+                <input type="email" name="email" placeholder="Email: " id="email" pattern="[a-zA-Z0-9]+@goa\.bits-pilani\.ac\.in" title="Please provide only register with bits email address" required ngModel>
+                <br>
+                <br>
+                <label>Enter your Mobile number: </label>
+                <input type="number" name="phonenumber" placeholder="Mobile number: " ngModel>
+                <br>
+                <br>
+                <label>Enter your Mentor's name: </label>
+                <input type="text" name="mentor" placeholder="Mentor's name: " required ngModel>
+                <br>
+                <br>
+                <label>Enter the Coordinator's name who is in your group: </label>
+                <input type="text" name="coordi" placeholder="Coordinator's name: " required ngModel>
+                <br>
+                <br>
+                <label>Enter your Password: </label>
+                <input type="password" name="password" placeholder="Password: " ngModel required>
+                <br>
+                <br>
+                <label>Confirm your password: </label>
+                <input type="password" name="cpass" placeholder="Password: " required ngModel>
+                <br>
+                <br>
+                <a><button>Submit</button></a>
+                
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pmpApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- <script src="module.js"></script> -->
+    <style>
+        table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+
+        var User = require('../index.js');
+
+        var pmpApp = angular.module('pmpApp', []);
+
+        pmpApp.controller('myController', ['$scope', function($scope){
+            // $scope.users = Array.from(User.find());
+            $scope.users = User.find();
+            // $scope.message = "Hey";
+        }]);
+
+    </script>
+
+    <div ng-controller="myController">
+        <!-- <input type="text" ng-model="message" placeholder="Enter message"> -->
+        <!-- <p>{{message}}</p> -->
+        <input type="text" ng-model="search">
+
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>BITS email </th>
+                <th>Phone Number</th>
+                <th>Mentor name </th>
+                <th>Coordinator Name</th>
+                <th>Complaint type </th>
+                <th>Complaint</th>
+                <th>Created date</th>
+            </tr>
+
+            <tr ng-repeat="user in users">
+        <!-- <tr>     -->
+            <td> {{user.username}} </td>
+            <td> {{user.email}} </td>
+            <td> {{user.phonenumber}} </td>
+            <td> {{user.mentor}} </td>
+            <td> {{user.coordi}} </td>
+            <td> {{user.type}} </td>
+            <td> {{user.complaint}} </td>
+            <td> {{user.created}} </td>
+        
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

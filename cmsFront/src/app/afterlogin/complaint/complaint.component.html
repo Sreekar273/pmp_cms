@@ -1,0 +1,35 @@
+<!-- <p>complaint works!</p> -->
+
+<div class="container-fluid-page">
+    <div class="page_box pd-3 mt-2">
+        Complaint
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-relative text-center">
+            <form #userData="ngForm" (ngSubmit)="onSubmit(userData.value, '/')" class="regform">
+                <!-- <label>Enter your name: </label>
+                <input type="text" name="username" placeholder="Name: " ngModel>
+                <br>
+                <br>
+                <label>Enter your email: </label>
+                <input type="text" name="email" placeholder="Email: " ngModel>
+                <br>
+                <br> -->
+                <label for="drp">Select the type of complaint: </label>
+                <select name="type" id="drp" placeholder="Select" ngModel>
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="q1">Not satisfied with my Mentor</option>
+                    <option value="q2">My Mentor did not contact me</option>
+                    <option value="q3">My Mentor does not respond to my queries</option>
+                </select>
+                <!-- <label for="complaint">Enter your complaint: </label> -->
+                <p>Enter your complaint: </p>
+                <textarea name="complaint" id="" cols="80" rows="15" id="complaint" placeholder="Type your complaint here..." ngModel></textarea>
+                <br>
+                <br>
+                <a><button>Submit</button></a>
+                
+            </form>
+        </div>
+    </div>
+</div>

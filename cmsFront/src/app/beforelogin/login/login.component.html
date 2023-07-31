@@ -1,0 +1,26 @@
+<!-- <p>login works!</p> -->
+
+<div class="container-fluid-page">
+    <div class="page_box pd-3 mt-2">
+        <!-- <login-header></login-header> -->
+        Login
+    </div>
+    
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute text-center">   
+            <div id="loginform">
+                <form #userData="ngForm" (ngSubmit)="onSubmit(userData.value, '/dashboard')" class="regform">
+                    <label>Enter your email: </label>
+                    <input type="text" name="email" placeholder="Email: " class="input" ngModel>
+                    <br>
+                    <br>
+                    <label>Enter your Password: </label>
+                    <input type="password" name="password" placeholder="Password: " class="input" ngModel>
+                    <br>
+                    <br>
+                    <a><button>Submit</button></a>
+                </form>
+            </div>
+        </div>
+    </div>         
+</div>
