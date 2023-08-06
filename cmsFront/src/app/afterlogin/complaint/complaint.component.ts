@@ -27,12 +27,31 @@ export class ComplaintComponent {
       data.email = curremail!;
       console.log(data);
       
-      return this.http.post<any>("http://127.0.0.1:8000/complaint", data)
+      return this.http.post<any>("https://pmp-cms-node.vercel.app/complaint", data)
         .subscribe((result)=>{
         console.log(result);
 
         this.router.navigate([path]);
       });
     }
+  // onSubmit(data: {email: string, type: string, complaint: string}, path: string){
+
+  //   let curremail = localStorage.getItem('UserData');
+
+  //   console.log(curremail);
+
+  //   //   alert('1');  FINAL
+  //     // let queryParams = new HttpParams().append("username",data.username);
+  //     console.log(data);
+  //     data.email = curremail!;
+  //     console.log(data);
+      
+  //     return this.http.post<any>("http://127.0.0.1:8000/complaint", data)
+  //       .subscribe((result)=>{
+  //       console.log(result);
+
+  //       this.router.navigate([path]);
+  //     });
+  //   }
 
 }

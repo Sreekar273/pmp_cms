@@ -1,15 +1,10 @@
-// import mongoose from 'mongoose';
-// import express from "express";
-// import bodyParser from "body-parser";
-// import { fileURLToPath } from 'url';
-// import { dirname } from 'path';
-
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
 var url = require('url');
 var cors = require('cors');
+var nodemailer = require('nodemailer');
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 
@@ -27,7 +22,7 @@ app.options('*', cors()); // include before other routes
 
 app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-    res.header("Access-Control-Allow-Origin", "http://localhost:4400");
+    res.header("Access-Control-Allow-Origin", "https://pmp-cms.vercel.app");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Max-Age", 3600);

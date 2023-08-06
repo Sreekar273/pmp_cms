@@ -43,7 +43,7 @@ export class RegisterComponent{
   onSubmit(data:{username: string, email: string, phonenumber: number, mentor: string, coordi: string, password: string, cpass: string}, path: string){
 
     if(data.email != '' && data.password != '' && data.cpass != '' && data.mentor != '' && data.coordi != '' && data.phonenumber != null && data.username != ''){
-      return this.http.post<any>("http://127.0.0.1:8000/register", data)
+      return this.http.post<any>("https://pmp-cms-node.vercel.app/register", data)
       .subscribe((result)=>{
        console.log(result);
        if(result){
@@ -61,6 +61,27 @@ export class RegisterComponent{
   //  console.log(data.username);
     
   }
+  // onSubmit(data:{username: string, email: string, phonenumber: number, mentor: string, coordi: string, password: string, cpass: string}, path: string){
+
+  //   if(data.email != '' && data.password != '' && data.cpass != '' && data.mentor != '' && data.coordi != '' && data.phonenumber != null && data.username != ''){
+  //     return this.http.post<any>("http://127.0.0.1:8000/register", data)
+  //     .subscribe((result)=>{
+  //      console.log(result);
+  //      if(result){
+  //       this.router.navigate([path]);
+  //      }
+  //   });
+  //   }
+  //   else{
+  //     return alert("Please complete the form");
+  //     // path = '/complaint';
+  //     // return this.router.navigate([path]);
+  //   }
+  // //   alert('1');  FINAL
+  //   // let queryParams = new HttpParams().append("username",data.username);
+  // //  console.log(data.username);
+    
+  // }
 
   // clickButton(path:string){
   //   this.router.navigate([path]);

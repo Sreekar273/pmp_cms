@@ -30,7 +30,7 @@ export class LoginComponent{
     // let queryParams = new HttpParams().append("username",data.username);
   //  console.log(data.username);
   // this.router.navigate([path]);
-    return this.http.post<any>("http://127.0.0.1:8000/login", data)
+    return this.http.post<any>("https://pmp-cms-node.vercel.app/login", data)
       .subscribe((result)=>{
         // debugger;
         console.log(result);
@@ -64,6 +64,52 @@ export class LoginComponent{
 
     // })
   }
+  // loginUser(): void{
+  //   this.auth.login().then(()=>{
+  //     this.router.navigate(['/complaint']);
+  //   });
+  // }
+
+  // onSubmit(data:any, path: string){
+
+  // //   alert('1');  FINAL
+  //   // let queryParams = new HttpParams().append("username",data.username);
+  // //  console.log(data.username);
+  // // this.router.navigate([path]);
+  //   return this.http.post<any>("http://127.0.0.1:8000/login", data)
+  //     .subscribe((result)=>{
+  //       // debugger;
+  //       console.log(result);
+  //       console.log(result.role);
+  //       // localStorage.setItem('localUserData', JSON.stringify(result));
+  //       localStorage.setItem('localUserData', (result.role));
+  //       console.log(localStorage.getItem('localUserData'));
+
+  //       localStorage.setItem('UserData', (data.email));
+  //       console.log(localStorage.getItem('UserData'));
+
+  //       if(result.result){
+  //         // this.router.navigate([path]);
+  //         if(result.role === 'Admin'){
+  //           this.auth.login().then(()=>{
+  //             this.router.navigate(['/admin']);
+  //           });
+  //           // this.loginUser();
+  //         }
+  //         else{
+  //           // path = '/complaint';
+  //           this.loginUser();
+  //         }
+          
+  //       }
+  //       else{
+  //         alert('Incorrect email or password');
+  //       }
+  //   });
+  //   // this.http.get<any>("http://127.0.0.1:5000/login", data).subscribe({
+
+  //   // })
+  // }
 
   // ngOnInit(){
   //   // this.loginData = this.service.getData();

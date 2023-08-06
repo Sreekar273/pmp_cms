@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     // Simple GET request with response type <any>
-    this.http.get<any>('http://127.0.0.1:8000/admin').subscribe(data => {
+    this.http.get<any>('https://pmp-cms-node.vercel.app/admin').subscribe(data => {
       // console.log(data);
         this.totalAngularPackages = data;
         console.log(this.totalAngularPackages);
@@ -21,4 +21,14 @@ export class AdminComponent implements OnInit {
 
     // console.log(this.totalAngularPackages);
   }
+  // ngOnInit() {
+  //   // Simple GET request with response type <any>
+  //   this.http.get<any>('http://127.0.0.1:8000/admin').subscribe(data => {
+  //     // console.log(data);
+  //       this.totalAngularPackages = data;
+  //       console.log(this.totalAngularPackages);
+  //   });
+
+  //   // console.log(this.totalAngularPackages);
+  // }
 }
