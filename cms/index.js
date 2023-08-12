@@ -5,6 +5,7 @@ var path = require('path');
 var url = require('url');
 var cors = require('cors');
 var nodemailer = require('nodemailer');
+const { MongoClient } = require("mongodb");
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 
@@ -15,28 +16,36 @@ const app = express();
 // app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 app.use(bodyParser.text());
+app.use(express.static("public"));
 
-app.use(cors());
+// app.use(cors());
 
-app.options('*', cors()); // include before other routes
+// app.options('*', cors()); // include before other routes
 
-app.use(function(req, res, next) { //allow cross origin requests
-    res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-    res.header("Access-Control-Allow-Origin", "https://pmp-cms.vercel.app");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header("Access-Control-Max-Age", 3600);
-    next();
-});
+// app.use(function(req, res, next) { //allow cross origin requests
+//     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+//     res.header("Access-Control-Allow-Origin", "http://localhost:4400");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.header("Access-Control-Allow-Credentials", true);
+//     res.header("Access-Control-Max-Age", 3600);
+//     next();
+// });
 
 // app.get("/", function(req, res){   
 //     res.sendFile(__dirname + "/index.html");  
 // });
 
-mongoose.connect("mongodb://0.0.0.0:27017/PMP", {
+const username = encodeURIComponent("Sreekar");
+const password = encodeURIComponent("Sreekar@2003");
+
+mongoose.connect(`mongodb+srv://${username}:${password}@pmp-cms.f4bdhuo.mongodb.net/PMP`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+// mongoose.connect("mongodb://0.0.0.0:27017/PMP", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
 
 console.log("Connected");
 
@@ -65,7 +74,11 @@ const Complaint = mongoose.model("Complaint", complaintSchema);
 //     return User.find({});
 // };
 
-app.post("/register", async function(req,res){
+app.get("/",(req,res)=>{
+    res.sendFile(__dirname+"/public/index.html");
+})
+
+app.post("/new", async function(req,res){
     console.log(req.body);
 
     // if (!req.body.email) {
@@ -83,7 +96,13 @@ app.post("/register", async function(req,res){
         let mentor = req.body.mentor;
         let coordi = req.body.coordi;
 
-        const user1 = await NewUser.findOne({ email: req.body.email });
+        const broken = email.split('@');
+        console.log(broken[1]);
+        if(broken[1] !== "goa.bits-pilani.ac.in"){
+            res.send(false);
+        }
+        else{
+            const user1 = await NewUser.findOne({ email: req.body.email });
 
         if(password == cpass && user1 == null){
             const user2 = new NewUser({
@@ -101,6 +120,9 @@ app.post("/register", async function(req,res){
         }
         
         res.status(200);
+        }
+
+        
         
     // }
     // exit('1');
@@ -108,7 +130,7 @@ app.post("/register", async function(req,res){
    
 });
 
-app.post("/login", async function(req,res){
+app.post("/ent", async function(req,res){
 
     // let loginObj = {
     //     username: req.body.username,
@@ -137,7 +159,7 @@ app.post("/login", async function(req,res){
             // res.sendFile(__dirname + "/home.html");
             console.log(result);
             res.status(200);
-            if(req.body.email === 's@gmail.com'){
+            if(req.body.email === 's@goa.bits-pilani.ac.in'){
                 res.send({result: true, role: 'Admin'});
             }
             else{
@@ -158,7 +180,7 @@ app.post("/login", async function(req,res){
 
 });
 
-app.post("/complaint", async function(req, res){
+app.post("/prob", async function(req, res){
 
     console.log(req.body);
     console.log(req.body.email);
@@ -250,7 +272,7 @@ app.post("/complaint", async function(req, res){
     
 });
 
-app.get("/admin", async function(req,res){
+app.get("/coordi", async function(req,res){
     // Complaint.find().then(function(postdata){
     //     res.send(postdata);
     // });
@@ -268,6 +290,10 @@ app.get("/admin", async function(req,res){
     console.log(usercomplaints);
     res.send(usercomplaints);
 });
+
+app.get("*",(req,res)=>{
+    res.sendFile(__dirname+"/public/index.html");
+})
 
 app.listen(8000, function(){
     console.log("Server is running on port 8000");
