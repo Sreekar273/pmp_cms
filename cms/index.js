@@ -90,25 +90,23 @@ app.post("/new", async function(req,res){
     // else{
         let username = req.body.username;
         let email = req.body.email;
-        let password = req.body.password;
-        let cpass = req.body.cpass;
         let phonenumber = req.body.phonenumber;
         let mentor = req.body.mentor;
         let coordi = req.body.coordi;
 
-        const broken = email.split('@');
-        console.log(broken[1]);
-        if(broken[1] !== "goa.bits-pilani.ac.in"){
-            res.send(false);
-        }
-        else{
-            const user1 = await NewUser.findOne({ email: req.body.email });
+        // const broken = email.split('@');
+        // console.log(broken[1]);
+        // if(broken[1] !== "goa.bits-pilani.ac.in"){
+        //     res.send(false);
+        // }
+        console.log(username);
+        console.log(mentor);
+        const user1 = await NewUser.findOne({ email: req.body.email });
 
-        if(password == cpass && user1 == null){
+        if(user1 == null){
             const user2 = new NewUser({
                 username: username,
                 email: email,
-                password: password,
                 phonenumber: phonenumber,
                 mentor: mentor,
                 coordi: coordi,
@@ -117,7 +115,7 @@ app.post("/new", async function(req,res){
         
             user2.save();
             res.send(true);
-        }
+        
         
         res.status(200);
         }
@@ -149,28 +147,21 @@ app.post("/ent", async function(req,res){
 
     if (user != null) {
         //check if password matches
-        const result = req.body.password === user.password;
-        console.log(result);
+        // const result = req.body.password === user.password;
+        // console.log(result);
         // bcrypt
         //     .compare(password, hash)
         //     .then(result = true)
-        if (result) {
         //   res.render("list");
             // res.sendFile(__dirname + "/home.html");
-            console.log(result);
+            // console.log(result);
             res.status(200);
-            if(req.body.email === 's@goa.bits-pilani.ac.in'){
+            if(req.body.email === 'f20212602@goa.bits-pilani.ac.in'){
                 res.send({result: true, role: 'Admin'});
             }
             else{
                 res.send({result: true, role: 'User'});
             }
-        } else {
-        //   res.sendStatus(400).json({ error: "password doesn't match" });
-          res.send(false);
-        // res.redirect('/login');
-            // res.send("Password incorrect. Please try again");
-        }
     } 
     else {
         res.send(false);
