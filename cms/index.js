@@ -164,7 +164,8 @@ app.post("/ent", async function(req,res){
             }
     } 
     else {
-        res.send(false);
+        res.status(201).json({ error: "User doesn't exist" });
+        // res.send(false);
         // res.status(400).json({ error: "User doesn't exist" });
         // res.send("Username does not exist. Please try again or Register");
     }
@@ -179,7 +180,7 @@ app.post("/prob", async function(req, res){
     let complaintdata = await NewUser.find({email: req.body.email});
     console.log(complaintdata);
 
-    let username = complaintdata[0].username;
+    // let username = complaintdata[0].username;
     let email = req.body.email;
     // var phonenumber = req.body.phonenumber;
     // var mentor = req.body.mentor;
