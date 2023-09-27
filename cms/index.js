@@ -94,11 +94,12 @@ app.post("/new", async function(req,res){
         let mentor = req.body.mentor;
         let coordi = req.body.coordi;
 
-        // const broken = email.split('@');
-        // console.log(broken[1]);
-        // if(broken[1] !== "goa.bits-pilani.ac.in"){
-        //     res.send(false);
-        // }
+        const broken = email.split('@');
+        console.log(broken[1]);
+        if(broken[1] !== "goa.bits-pilani.ac.in"){
+            res.status(201);
+            // res.send(false);
+        }
         console.log(username);
         console.log(mentor);
         const user1 = await NewUser.findOne({ email: req.body.email });
@@ -114,12 +115,12 @@ app.post("/new", async function(req,res){
             });
         
             user2.save();
-            res.send(true);
+            // res.send(true);
         
         
         res.status(200);
         }
-
+        // res.send({ message: "User exists" });
         
         
     // }
@@ -283,9 +284,13 @@ app.get("/coordi", async function(req,res){
     res.send(usercomplaints);
 });
 
+// app.get("/contact", async function(req,res){
+    
+// });
+
 app.get("*",(req,res)=>{
     res.redirect("/");
-})
+});
 
 app.listen(8000, function(){
     console.log("Server is running on port 8000");
