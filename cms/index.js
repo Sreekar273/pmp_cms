@@ -78,33 +78,76 @@ app.get("/",(req,res)=>{
     res.sendFile(__dirname+"/public/index.html");
 })
 
-app.post("/new", async function(req,res){
+// app.post("/new", async function(req,res){
+//     console.log(req.body);
+
+//     // if (!req.body.email) {
+//     //     // res.status(400).send({ message: "Content can not be empty!" });
+//     //     res.send(false);
+//     //     // res.status(200);
+//     //     return;
+//     // }
+//     // else{
+//         let username = req.body.username;
+//         let email = req.body.email;
+//         let phonenumber = req.body.phonenumber;
+//         let mentor = req.body.mentor;
+//         let coordi = req.body.coordi;
+
+//         const broken = email.split('@');
+//         console.log(broken[1]);
+//         if(broken[1] !== "goa.bits-pilani.ac.in"){
+//             res.status(201);
+//             // res.send(false);
+//         }
+//         console.log(username);
+//         console.log(mentor);
+//         const user1 = await NewUser.findOne({ email: req.body.email });
+
+//         if(user1 == null && broken[1] === "goa.bits-pilani.ac.in"){
+//             const user2 = new NewUser({
+//                 username: username,
+//                 email: email,
+//                 phonenumber: phonenumber,
+//                 mentor: mentor,
+//                 coordi: coordi,
+//                 created: new Date(Date.now()),
+//             });
+        
+//             user2.save();
+//             // res.send(true);
+        
+        
+//             res.status(200);
+//         }
+//         // res.send({ message: "User exists" });
+        
+        
+//     // }
+//     // exit('1');
+//     // res.send(res.body);
+   
+// });
+
+
+app.post("/new", async function(req, res) {
     console.log(req.body);
 
-    // if (!req.body.email) {
-    //     // res.status(400).send({ message: "Content can not be empty!" });
-    //     res.send(false);
-    //     // res.status(200);
-    //     return;
-    // }
-    // else{
-        let username = req.body.username;
-        let email = req.body.email;
-        let phonenumber = req.body.phonenumber;
-        let mentor = req.body.mentor;
-        let coordi = req.body.coordi;
+    const username = req.body.username;
+    const email = req.body.email;
+    const phonenumber = req.body.phonenumber;
+    const mentor = req.body.mentor;
+    const coordi = req.body.coordi;
 
-        const broken = email.split('@');
-        console.log(broken[1]);
-        if(broken[1] !== "goa.bits-pilani.ac.in"){
-            res.status(201);
-            // res.send(false);
-        }
-        console.log(username);
-        console.log(mentor);
+    const broken = email.split('@');
+    console.log(broken[1]);
+
+    if (broken[1] !== "goa.bits-pilani.ac.in") {
+        res.status(201).json({ error: "Please use a BITS email address." });
+    } else {
         const user1 = await NewUser.findOne({ email: req.body.email });
 
-        if(user1 == null){
+        if (user1 === null) {
             const user2 = new NewUser({
                 username: username,
                 email: email,
@@ -113,21 +156,16 @@ app.post("/new", async function(req,res){
                 coordi: coordi,
                 created: new Date(Date.now()),
             });
-        
+
             user2.save();
-            // res.send(true);
-        
-        
-        res.status(200);
+
+            res.status(200).json({ success: "Registration successful." });
+        } else {
+            res.status(201).json({ error: "User already exists." });
         }
-        // res.send({ message: "User exists" });
-        
-        
-    // }
-    // exit('1');
-    // res.send(res.body);
-   
+    }
 });
+
 
 app.post("/ent", async function(req,res){
 
