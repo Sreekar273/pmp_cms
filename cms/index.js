@@ -296,11 +296,11 @@ app.post("/prob", async function(req, res){
         // console.log(comp);
         // res.sendFile(__dirname + "/submit.html");
 
-        res.status(200);
-        res.send(true);
+        return res.status(200).json({ success: "Feedback successful."});
+        // res.send(true);
     }
 
-    
+    return res.status(201).json({ error: "User doesn't exist" });
 });
 
 app.get("/coordi", async function(req,res){

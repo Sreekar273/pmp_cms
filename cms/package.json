@@ -17,6 +17,6 @@
     "mongodb": "^5.7.0",
     "mongoose": "^7.3.1",
     "nodemailer": "^6.9.4",
-    "sweetalert2": "^11.7.31"
+    "sweetalert2": "^11.7.32"
   }
 }
