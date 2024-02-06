@@ -36,7 +36,7 @@ app.use(express.static(__dirname+"/public"));
 // });
 
 const username = encodeURIComponent("Sreekar");
-const password = encodeURIComponent("Sreekar@2003");
+const password = encodeURIComponent("1234@2021");
 
 mongoose.connect(`mongodb+srv://${username}:${password}@pmp-cms.f4bdhuo.mongodb.net/PMP`, {
   useNewUrlParser: true,
